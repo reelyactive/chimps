@@ -24,7 +24,9 @@
     "url": "https://github.com/reelyactive/chimps.git"
   },
   "dependencies": {
-    "raddec": "^0.4.0"
+    "polygon-lookup": "^2.6.0",
+    "raddec": "^0.4.0",
+    "raddec-filter": ">=0.2.0"
   },
   "devDependencies": {},
   "bugs": {
