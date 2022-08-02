@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const dgram = require('dgram');
+const server = dgram.createSocket('udp4');
+const Raddec = require('raddec');
+const Chimps = require('../lib/chimps.js');
+
+const RADDEC_PORT = process.env.RADDEC_PORT || 50001;
+
+let chimps = new Chimps();
+
+chimps.on('spadyn', (spadyn) => { console.log(spadyn); });
+
+server.on('message', function(msg) {
+  try {
+    let raddec = new Raddec(msg);
+
+    if(raddec !== null) {
+      chimps.handleRaddec(raddec);
+    }
+  }
+  catch(error) {};
+});
+
+server.bind(50001);
+
+console.log('chimps instance is listening for raddecs on port', RADDEC_PORT);

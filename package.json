@@ -1,0 +1,39 @@
+{
+  "name": "chimps",
+  "homepage": "https://www.reelyactive.com",
+  "author": {
+    "name": "reelyActive",
+    "email": "info@reelyactive.com"
+  },
+  "description": "Spatial dynamics processor for context-aware physical spaces.  We believe in an open Internet of Things.",
+  "keywords": [
+    "reelyActive",
+    "IoT",
+    "RTLS"
+  ],
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "main": "./lib/chimps.js",
+  "scripts": {
+    "start": "node bin/chimps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reelyactive/chimps.git"
+  },
+  "dependencies": {
+    "raddec": "^0.4.0"
+  },
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/reelyactive/chimps/issues"
+  },
+  "contributors": [
+    {
+      "name": "Jeffrey Dungen"
+    }
+  ],
+  "license": "MIT"
+}
