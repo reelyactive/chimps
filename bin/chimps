@@ -7,7 +7,19 @@ const Chimps = require('../lib/chimps.js');
 
 const RADDEC_PORT = process.env.RADDEC_PORT || 50001;
 
-let chimps = new Chimps();
+const FEATURE_COLLECTION = {
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {},
+        geometry: {
+            type: "Polygon",
+            coordinates: [[[ 0, 1 ], [ 1, 0 ], [ 0, -1 ], [ -1, 0 ], [ 0, 1 ]]]
+        }
+    }]
+};
+
+let chimps = new Chimps({ featureCollection: FEATURE_COLLECTION });
 
 chimps.on('spadyn', (spadyn) => { console.log(spadyn); });
 
