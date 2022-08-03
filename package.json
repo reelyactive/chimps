@@ -5,13 +5,15 @@
     "name": "reelyActive",
     "email": "info@reelyactive.com"
   },
-  "description": "Spatial dynamics processor for context-aware physical spaces.  We believe in an open Internet of Things.",
+  "description": "Spatial-temporal dynamics processor for context-aware physical spaces.  We believe in an open Internet of Things.",
   "keywords": [
     "reelyActive",
     "IoT",
-    "RTLS"
+    "RTLS",
+    "spatem",
+    "raddec"
   ],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "node": ">=6.0.0"
   },
