@@ -1,7 +1,7 @@
 chimps
 ======
 
-Spatial dynamics processor for context-aware physical spaces and companion to [barnacles](https://github.com/reelyactive/barnacles).
+Spatial-temporal dynamics processor for context-aware physical spaces and companion to [barnacles](https://github.com/reelyactive/barnacles).
 
 
 Installation
@@ -15,7 +15,7 @@ Quick start
 
     npm start
 
-__chimps__ will listen for raddec UDP packets on port 50001 and print the spatial dynamics to the console.
+__chimps__ will listen for raddec UDP packets on port 50001 and print the spatial-temporal (spatem) data to the console.
 
 
 Contributing

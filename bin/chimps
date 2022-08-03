@@ -21,17 +21,16 @@ const FEATURE_COLLECTION = {
 
 let chimps = new Chimps({ featureCollection: FEATURE_COLLECTION });
 
-chimps.on('spadyn', (spadyn) => { console.log(spadyn); });
+chimps.on('spatem', (spatem) => { console.log(spatem); });
 
 server.on('message', function(msg) {
-  try {
-    let raddec = new Raddec(msg);
-
-    if(raddec !== null) {
-      chimps.handleRaddec(raddec);
-    }
-  }
+  let raddec;
+  try { raddec = new Raddec(msg); }
   catch(error) {};
+
+  if(raddec !== null) {
+    chimps.handleRaddec(raddec);
+  }
 });
 
 server.bind(50001);
