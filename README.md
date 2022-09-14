@@ -22,6 +22,77 @@ Quick start
 __chimps__ will listen for raddec UDP packets on port 50001 and print the spatial-temporal (spatem) data to the console.
 
 
+spatem
+------
+
+The format of the spatem object, which is the sole output of __chimps__, is as follows:
+
+    {
+      deviceId: "bada55beac04",
+      deviceIdType: 2,
+      type: "location", // "position" or "location"
+      data: { /* FeatureCollection */ },
+      timestamp: 1645568542222
+    }
+
+In the case where the position of the associated raddec cannot be matched with any Features in __chimps__' FeatureCollection, the spatem type will be a _position_ and include a FeatureCollection of exactly one item, a "Point", as its data property.  Else, the spatem type will be a _location_ and include a FeatureCollection which adds all matched Features as its data property.  Each type of spatem is described in full detail below.
+
+### position
+
+A spatem of type _position_ has the following format:
+
+    {
+      deviceId: "bada55beac04",
+      deviceIdType: 2,
+      type: "position",
+      data: {
+        type: "FeatureCollection",
+        features: [{
+          type: "Feature",
+          properties: { isDevicePosition: true },
+          geometry: {
+            type: "Point",
+            coordinates: [ 0.0, 0.0, 0.0 ]
+          }
+        }]
+      },
+      timestamp: 1645568542222
+    }
+
+__chimps__ adds the property `isDevicePosition` to indicate that the "Point" represents the device position, as per the raddec.
+
+### location
+
+A spatem of type _location_ has the following format:
+
+    {
+      deviceId: "bada55beac04",
+      deviceIdType: 2,
+      type: "position",
+      data: {
+        type: "FeatureCollection",
+        features: [{
+          type: "Feature",
+          properties: { isDevicePosition: true },
+          geometry: {
+            type: "Point",
+            coordinates: [ 0.0, 0.0, 0.0 ]
+          }
+        },{
+          type: "Feature",
+          properties: { id: "(from chickadee)", name: "" },
+          geometry: {
+            type: "Polygon",
+            coordinates: [[[ 0, 1 ], [ 1, 0 ], [ 0, -1 ], [ -1, 0 ], [ 0, 1 ]]]
+          }
+        }
+      ]},
+      timestamp: 1645568542222
+    }
+
+Note that the first feature in the FeatureCollection will always be the "Point" representing the device position as per the raddec, with __chimps__ adding the property `isDevicePosition` to differentiate from any other associated "Point" which may be present in the FeatureCollection.
+
+
 Options
 -------
 
