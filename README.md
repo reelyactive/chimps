@@ -68,7 +68,7 @@ A spatem of type _location_ has the following format:
     {
       deviceId: "bada55beac04",
       deviceIdType: 2,
-      type: "position",
+      type: "location",
       data: {
         type: "FeatureCollection",
         features: [{
