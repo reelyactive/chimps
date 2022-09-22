@@ -80,7 +80,8 @@ A spatem of type _location_ has the following format:
           }
         },{
           type: "Feature",
-          properties: { id: "(from chickadee)", name: "" },
+          id: "(from chickadee)",
+          properties: { name: "" },
           geometry: {
             type: "Polygon",
             coordinates: [[[ 0, 1 ], [ 1, 0 ], [ 0, -1 ], [ -1, 0 ], [ 0, 1 ]]]
