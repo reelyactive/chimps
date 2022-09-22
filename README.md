@@ -104,7 +104,6 @@ __chimps__ supports the following options:
 | inputFilterParameters  | {}      | Filter on inbound raddecs (see [raddec-filter](https://github.com/reelyactive/raddec-filter)) |
 | observedEvents         | [ 'position', 'location' ] | List of event types that will produce a spatem output |
 | maxStoredSpatems       | 1       | The number of historic spatems to maintain in memory per device |
-| chickadee              | null    | chickadee instance providing a FeatureCollection |
 | featureCollection      | {}      | Explicit FeatureCollection to use in the absence of a connected chickadee instance |
 | barnowl                | null    | barnowl instance providing source data |
 
