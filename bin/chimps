@@ -11,28 +11,32 @@ const FEATURE_COLLECTION = {
     type: "FeatureCollection",
     features: [{
         type: "Feature",
-        properties: { id: '1', name: "Square One" },
+        id: "1",
+        properties: { name: "Square One" },
         geometry: {
             type: "Polygon",
             coordinates: [[[ 0, 0 ], [ -1, 0 ], [ -1, 1 ], [ 0, 1 ], [ 0, 0 ]]]
         }
     },{
         type: "Feature",
-        properties: { id: '2', name: "Square Two" },
+        id: "2",
+        properties: { name: "Square Two" },
         geometry: {
             type: "Polygon",
             coordinates: [[[ 0, 0 ], [ 0, 1 ], [ 1, 1 ], [ 1, 0 ], [ 0, 0 ]]]
         }
     },{
         type: "Feature",
-        properties: { id: '3', name: "Square Three" },
+        id: "3",
+        properties: { name: "Square Three" },
         geometry: {
             type: "Polygon",
             coordinates: [[[ 0, 0 ], [ 1, 0 ], [ 1, -1 ], [ 0, -1 ], [ 0, 0 ]]]
         }
     },{
         type: "Feature",
-        properties: { id: '4', name: "Square Four" },
+        id: "4",
+        properties: { name: "Square Four" },
         geometry: {
             type: "Polygon",
             coordinates: [[[ 0, 0 ], [ 0, -1 ], [ -1, -1 ], [ -1, 0 ], [ 0, 0 ]]]
