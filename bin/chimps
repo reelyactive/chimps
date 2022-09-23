@@ -20,7 +20,7 @@ const FEATURE_COLLECTION = {
     },{
         type: "Feature",
         id: "2",
-        properties: { name: "Square Two" },
+        properties: { name: "Square Two", elevation: 0.1 },
         geometry: {
             type: "Polygon",
             coordinates: [[[ 0, 0 ], [ 0, 1 ], [ 1, 1 ], [ 1, 0 ], [ 0, 0 ]]]
@@ -28,7 +28,7 @@ const FEATURE_COLLECTION = {
     },{
         type: "Feature",
         id: "3",
-        properties: { name: "Square Three" },
+        properties: { name: "Square Three", elevation: -1, height: 2 },
         geometry: {
             type: "Polygon",
             coordinates: [[[ 0, 0 ], [ 1, 0 ], [ 1, -1 ], [ 0, -1 ], [ 0, 0 ]]]
@@ -36,10 +36,18 @@ const FEATURE_COLLECTION = {
     },{
         type: "Feature",
         id: "4",
-        properties: { name: "Square Four" },
+        properties: { name: "Square Four", elevation: -0.5, height: 1 },
         geometry: {
             type: "Polygon",
             coordinates: [[[ 0, 0 ], [ 0, -1 ], [ -1, -1 ], [ -1, 0 ], [ 0, 0 ]]]
+        }
+    },{
+        type: "Feature",
+        id: "5",
+        properties: { name: "All Squares" },
+        geometry: {
+            type: "Polygon",
+            coordinates: [[[ -1, 1 ], [ 1, 1 ], [ 1, -1 ], [ -1, -1 ], [ 1, 1 ]]]
         }
     }]
 };
