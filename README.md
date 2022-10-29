@@ -108,6 +108,18 @@ __chimps__ supports the following options:
 | barnowl                | null    | barnowl instance providing source data |
 
 
+What's in a name?
+-----------------
+
+Chimpanzees (chimps) have outstanding spatial awareness.  __chimps__ is our first mascot-nameworthy module since perhaps 2015, and we intend to continue our tradition of mascot name storytelling, so check back soon!
+
+
+Project History
+---------------
+
+__chimps__ v1.0.0 was released in October 2022, developed to accommodate 2D and 3D real-time location data, initially from [barnowl-rfcontrols](https://github.com/reelyactive/barnowl-rfcontrols/).
+
+
 Contributing
 ------------
 
