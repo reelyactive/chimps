@@ -12,11 +12,12 @@
     "RTLS",
     "spatem",
     "raddec",
+    "positioning engine",
     "GeoJSON"
   ],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=14.0.0"
   },
   "main": "./lib/chimps.js",
   "scripts": {
@@ -28,7 +29,7 @@
   },
   "dependencies": {
     "polygon-lookup": "^2.6.0",
-    "raddec": "^0.4.2",
+    "raddec": "^0.5.0",
     "raddec-filter": ">=0.4.0"
   },
   "devDependencies": {},
