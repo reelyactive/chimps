@@ -3,7 +3,7 @@ chimps
 
 Spatial-temporal dynamics processor for context-aware physical spaces and companion to [barnacles](https://github.com/reelyactive/barnacles).
 
-__chimps__ ingests a real-time stream of [raddec](https://github.com/reelyactive/raddec) objects and outputs _spatem_ (SPAtial-TEMporal) objects based on positions calculated internally by location engines and/or externally by third-party systems.
+__chimps__ ingests a real-time stream of [raddec](https://github.com/reelyactive/raddec) objects and outputs _spatem_ (SPAtial-TEMporal) objects based on positions calculated internally by positioning engines and/or externally by third-party systems.
 
 __chimps__ is a lightweight [Node.js package](https://www.npmjs.com/package/chimps) that can run on resource-constrained edge devices as well as on powerful cloud servers and anything in between. It is typically connected with a [barnowl](https://github.com/reelyactive/barnowl) and/or [barnacles](https://github.com/reelyactive/barnacles) instance which sources real-time radio decodings from an underlying hardware layer. Together these packages are core components of reelyActive's [Pareto Anywhere](https://www.reelyactive.com/pareto/anywhere/) open source middleware.
 
@@ -56,7 +56,7 @@ A spatem of type _position_ has the following format:
         type: "FeatureCollection",
         features: [{
           type: "Feature",
-          properties: { isDevicePosition: true, locationEngine: "External" },
+          properties: { isDevicePosition: true, positioningEngine: "External" },
           geometry: {
             type: "Point",
             coordinates: [ 0.0, 0.0, 0.0 ]
@@ -81,7 +81,7 @@ A spatem of type _location_ has the following format:
         features: [{
           type: "Feature",
           properties: { isDevicePosition: true,
-                        locationEngine: "AnchorAndPull" },
+                        positioningEngine: "AnchorAndPull" },
           geometry: {
             type: "Point",
             coordinates: [ 0.0, 0.0, 0.0 ]
@@ -102,25 +102,25 @@ A spatem of type _location_ has the following format:
 Note that the first feature in the FeatureCollection will always be the "Point" representing the device position as per the raddec, with __chimps__ adding the property `isDevicePosition` to differentiate from any other associated "Point" which may be present in the FeatureCollection.
 
 
-Location Engines
-----------------
+Positioning Engines
+-------------------
 
-__chimps__ supports both internal and external location engines for estimating the real-time position of devices based on radio decodings and metadata.  Location engines are configured through the locationEngines option which has the following default setting:
+__chimps__ supports both internal and external positioning engines for estimating the real-time position of devices based on radio decodings and metadata.  Positioning engines are configured through the `positioningEngines` option which has the following default setting:
 
     [
-      { inputFilterParameters: {}, engine: LocationEngines.External },
+      { inputFilterParameters: {}, engine: PositioningEngines.External },
       { inputFilterParameters: {
             acceptedEvents: [ Raddec.events.APPEARANCE,
                               Raddec.events.DISPLACEMENT,
                               Raddec.events.KEEPALIVE ] },
-        engine: LocationEngines.AnchorAndPull }
+        engine: PositioningEngines.AnchorAndPull }
     ]
 
-The first location engine in the array to meet the inputFilterParameters criteria _and_ return a position will be observed.  In other words, the location engines are priority-based and mutually exclusive.
+The first positioning engine in the array to meet the inputFilterParameters criteria _and_ return a position will be observed.  In other words, the positioning engines are priority-based and mutually exclusive.
 
-The default setting prioritises external (third-party) location engines which add a `position` property to the raddec _before_ it is ingested by __chimps__.  If no `position` property is present, instead the anchor-and-pull engine will provide a position estimate, when possible, upon ingestion of raddec from [barnacles](https://github.com/reelyactive/barnacles) which corresponds with an appearance, displacement or keepalive event.
+The default setting prioritises external (third-party) positioning engines which add a `position` property to the raddec _before_ it is ingested by __chimps__.  If no `position` property is present, instead the anchor-and-pull engine will provide a position estimate, when possible, upon ingestion of a raddec from [barnacles](https://github.com/reelyactive/barnacles) which corresponds with an appearance, displacement or keepalive event.
 
-A user-defined location engine can be specified by providing as the `engine` property a Class which includes an `estimatePosition` function which takes as parameters a `raddec` and `associations`.  For example:
+A user-defined positioning engine can be specified by providing as the `engine` property a Class which includes an `estimatePosition` function which takes as parameters a `raddec` and `associations`.  For example:
 
 ```javascript
 engine:
@@ -148,7 +148,7 @@ __chimps__ supports the following options:
 | historyMilliseconds    | 5000    | How long to retain spatem data before it is flushed from memory |
 | featureCollection      | {}      | Explicit FeatureCollection to use in the absence of a connected chickadee instance |
 | associations           | Map()   | Explicit device associations to use in the absence of a connected chickadee instance |
-| locationEngines        | (see above) | The location engines and parameters to use to estimate device positions |
+| positioningEngines     | (see above) | The positioning engines and parameters to use to estimate device positions |
 | barnowl                | null    | barnowl instance providing source data |
 | barnacles              | null    | barnacles instance providing source data |
 
