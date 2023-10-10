@@ -3,23 +3,30 @@ chimps
 
 Spatial-temporal dynamics processor for context-aware physical spaces and companion to [barnacles](https://github.com/reelyactive/barnacles).
 
-__chimps__ ingests a real-time stream of [raddec](https://github.com/reelyactive/raddec) objects and outputs _spatem_ (SPAtial-TEMporal) objects whenever position information is included in the former.
+__chimps__ ingests a real-time stream of [raddec](https://github.com/reelyactive/raddec) objects and outputs _spatem_ (SPAtial-TEMporal) objects based on positions calculated internally by location engines and/or externally by third-party systems.
 
-__chimps__ is a lightweight [Node.js package](https://www.npmjs.com/package/chimps) that can run on resource-constrained edge devices as well as on powerful cloud servers and anything in between. It is typically connected with a [barnowl](https://github.com/reelyactive/barnowl) instance which sources real-time radio decodings from an underlying hardware layer. Together these packages are core components of [Pareto Anywhere](https://www.reelyactive.com/pareto/anywhere/) open source software of the [reelyActive technology platform](https://www.reelyactive.com/technology/).
-
-
-Installation
-------------
-
-    npm install chimps
+__chimps__ is a lightweight [Node.js package](https://www.npmjs.com/package/chimps) that can run on resource-constrained edge devices as well as on powerful cloud servers and anything in between. It is typically connected with a [barnowl](https://github.com/reelyactive/barnowl) and/or [barnacles](https://github.com/reelyactive/barnacles) instance which sources real-time radio decodings from an underlying hardware layer. Together these packages are core components of reelyActive's [Pareto Anywhere](https://www.reelyactive.com/pareto/anywhere/) open source middleware.
 
 
-Quick start
+Getting Started
+---------------
+
+Follow our step-by-step tutorials to get started with __chimps__ bundled within __Pareto Anywhere__:
+- [Run Pareto Anywhere on a PC](https://reelyactive.github.io/diy/pareto-anywhere-pc/)
+- [Run Pareto Anywhere on a Raspberry Pi](https://reelyactive.github.io/diy/pareto-anywhere-pi/)
+
+Learn "owl" about the __spatem__ JSON data output:
+- [reelyActive Developer's Cheatsheet](https://reelyactive.github.io/diy/cheatsheet/)
+
+
+Quick Start
 -----------
+
+Clone this repository, install package dependencies with `npm install`, and then from the root folder run at any time:
 
     npm start
 
-__chimps__ will listen for raddec UDP packets on port 50001 and print the spatial-temporal (spatem) data to the console.
+__chimps__ will listen for raddec UDP packets on 0.0.0.0:50001 and print the spatial-temporal (spatem) data to the console.
 
 
 spatem
@@ -49,7 +56,7 @@ A spatem of type _position_ has the following format:
         type: "FeatureCollection",
         features: [{
           type: "Feature",
-          properties: { isDevicePosition: true },
+          properties: { isDevicePosition: true, locationEngine: "External" },
           geometry: {
             type: "Point",
             coordinates: [ 0.0, 0.0, 0.0 ]
@@ -73,7 +80,8 @@ A spatem of type _location_ has the following format:
         type: "FeatureCollection",
         features: [{
           type: "Feature",
-          properties: { isDevicePosition: true },
+          properties: { isDevicePosition: true,
+                        locationEngine: "AnchorAndPull" },
           geometry: {
             type: "Point",
             coordinates: [ 0.0, 0.0, 0.0 ]
@@ -94,6 +102,39 @@ A spatem of type _location_ has the following format:
 Note that the first feature in the FeatureCollection will always be the "Point" representing the device position as per the raddec, with __chimps__ adding the property `isDevicePosition` to differentiate from any other associated "Point" which may be present in the FeatureCollection.
 
 
+Location Engines
+----------------
+
+__chimps__ supports both internal and external location engines for estimating the real-time position of devices based on radio decodings and metadata.  Location engines are configured through the locationEngines option which has the following default setting:
+
+    [
+      { inputFilterParameters: {}, engine: LocationEngines.External },
+      { inputFilterParameters: {
+            acceptedEvents: [ Raddec.events.APPEARANCE,
+                              Raddec.events.DISPLACEMENT,
+                              Raddec.events.KEEPALIVE ] },
+        engine: LocationEngines.AnchorAndPull }
+    ]
+
+The first location engine in the array to meet the inputFilterParameters criteria _and_ return a position will be observed.  In other words, the location engines are priority-based and mutually exclusive.
+
+The default setting prioritises external (third-party) location engines which add a `position` property to the raddec _before_ it is ingested by __chimps__.  If no `position` property is present, instead the anchor-and-pull engine will provide a position estimate, when possible, upon ingestion of raddec from [barnacles](https://github.com/reelyactive/barnacles) which corresponds with an appearance, displacement or keepalive event.
+
+A user-defined location engine can be specified by providing as the `engine` property a Class which includes an `estimatePosition` function which takes as parameters a `raddec` and `associations`.  For example:
+
+```javascript
+engine:
+  class AlwaysAtParc {
+    constructor(options) {}
+    estimatePosition(raddec, associations) {
+      return [ -73.57123, 45.50883 ];
+    }
+  }
+```
+
+Be advised that RSSI-based positioning in real-world conditions, _especially with ambient devices and existing infrastructure,_ is inherently limited in accuracy.  The anchor-and-pull method is provided as a low-overhead means to output "good enough" positions for applications which must consume data in the form of coordinates.  If highly-accurate coordinate-based positioning is absolutely required, instead select the appropriate technologies and infrastructure that add a `position` property _before_ it is ingested by __chimps__. 
+
+
 Options
 -------
 
@@ -104,8 +145,12 @@ __chimps__ supports the following options:
 | inputFilterParameters  | {}      | Filter on inbound raddecs (see [raddec-filter](https://github.com/reelyactive/raddec-filter)) |
 | observedEvents         | [ 'position', 'location' ] | List of event types that will produce a spatem output |
 | maxStoredSpatems       | 1       | The number of historic spatems to maintain in memory per device |
+| historyMilliseconds    | 5000    | How long to retain spatem data before it is flushed from memory |
 | featureCollection      | {}      | Explicit FeatureCollection to use in the absence of a connected chickadee instance |
+| associations           | Map()   | Explicit device associations to use in the absence of a connected chickadee instance |
+| locationEngines        | (see above) | The location engines and parameters to use to estimate device positions |
 | barnowl                | null    | barnowl instance providing source data |
+| barnacles              | null    | barnacles instance providing source data |
 
 
 What's in a name?
