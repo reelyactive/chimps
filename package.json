@@ -15,7 +15,7 @@
     "positioning engine",
     "GeoJSON"
   ],
-  "version": "1.1.1",
+  "version": "1.1.2",
   "engines": {
     "node": ">=14.0.0"
   },
