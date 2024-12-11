@@ -1,7 +1,7 @@
 chimps
 ======
 
-Spatial-temporal dynamics processor for context-aware physical spaces and companion to [barnacles](https://github.com/reelyactive/barnacles).
+__chimps__ is a spatial-temporal dynamics processor for ambient wireless decodings and companion to [barnacles](https://github.com/reelyactive/barnacles).
 
 ![Overview of chimps](https://reelyactive.github.io/chimps/images/overview.png)
 
@@ -155,10 +155,15 @@ __chimps__ supports the following options:
 | barnacles              | null    | barnacles instance providing source data |
 
 
+![chimps logo](https://reelyactive.github.io/chimps/images/chimps-bubble.png)
+
+
 What's in a name?
 -----------------
 
-Chimpanzees (chimps) have outstanding spatial awareness.  __chimps__ is our first mascot-nameworthy module since perhaps 2015, and we intend to continue our tradition of mascot name storytelling, so check back soon!
+Chimpanzees (or __chimps__ for short) exhibit remarkable spatial awareness skills and episodic memory, making them a great (ape) mascot for spatial-temporal dynamics processing.  Specifically, chimps can hold and manipulate spatial information in working memory, allowing them to recall the location of multiple "things" in an environment.  And chimps can learn to use tools, like external positioning engines, and openly share what they've learned with their community.
+
+Interspecies communication between humans and chimps is well known, but you may be surprised to learn that_—at least in our mascot universe—_chimps and chickadees are BFFs that enjoy communicating thanks to their respective abilities for linguistic adaptation!  To achieve contextual localisation, chimps will kindly ask a chickadee to use its outstanding associative memory to recall GeoJSON features, as _mon_key-value pairs, for use in their spatial reasoning.
 
 
 Project History
