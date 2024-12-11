@@ -3,6 +3,8 @@ chimps
 
 Spatial-temporal dynamics processor for context-aware physical spaces and companion to [barnacles](https://github.com/reelyactive/barnacles).
 
+![Overview of chimps](https://reelyactive.github.io/chimps/images/overview.png)
+
 __chimps__ ingests a real-time stream of [raddec](https://github.com/reelyactive/raddec) objects and outputs _spatem_ (SPAtial-TEMporal) objects based on positions calculated internally by positioning engines and/or externally by third-party systems.
 
 __chimps__ is a lightweight [Node.js package](https://www.npmjs.com/package/chimps) that can run on resource-constrained edge devices as well as on powerful cloud servers and anything in between. It is typically connected with a [barnowl](https://github.com/reelyactive/barnowl) and/or [barnacles](https://github.com/reelyactive/barnacles) instance which sources real-time radio decodings from an underlying hardware layer. Together these packages are core components of reelyActive's [Pareto Anywhere](https://www.reelyactive.com/pareto/anywhere/) open source middleware.
