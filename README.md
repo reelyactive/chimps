@@ -161,9 +161,9 @@ __chimps__ supports the following options:
 What's in a name?
 -----------------
 
-Chimpanzees (or __chimps__ for short) exhibit remarkable spatial awareness skills and episodic memory, making them a great (ape) mascot for spatial-temporal dynamics processing.  Specifically, chimps can hold and manipulate spatial information in working memory, allowing them to recall the location of multiple "things" in an environment.  And chimps can learn to use tools, like external positioning engines, and openly share what they've learned with their community.
+Chimpanzees (or __chimps__ for short) exhibit remarkable spatial awareness skills and episodic memory, making them a great (ape) mascot for spatial-temporal dynamics processing.  Specifically, __chimps__ can hold and manipulate spatial information in working memory, allowing them to recall the location of multiple "things" in an environment.  And __chimps__ can learn to use tools, like external positioning engines, and openly share what they've learned with their community.
 
-Interspecies communication between humans and chimps is well known, but you may be surprised to learn that_—at least in our mascot universe—_chimps and chickadees are BFFs that enjoy communicating thanks to their respective abilities for linguistic adaptation!  To achieve contextual localisation, chimps will kindly ask a chickadee to use its outstanding associative memory to recall GeoJSON features, as _mon_key-value pairs, for use in their spatial reasoning.
+Interspecies communication between humans and __chimps__ is well known, but you may be surprised to learn that—at least in our mascot universe—__chimps__ and chickadees are BFFs that enjoy communicating thanks to their respective abilities for linguistic adaptation!  To achieve contextual localisation, __chimps__ will kindly ask a [chickadee](https://github.com/reelyactive/chickadee/) to use its outstanding associative memory to recall GeoJSON features, as monkey-value pairs, for use in their spatial reasoning.
 
 
 Project History
