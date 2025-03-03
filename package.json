@@ -15,7 +15,7 @@
     "positioning engine",
     "GeoJSON"
   ],
-  "version": "1.1.2",
+  "version": "1.1.3",
   "engines": {
     "node": ">=14.0.0"
   },
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "polygon-lookup": "^2.6.0",
-    "raddec": "^0.5.0",
+    "raddec": "^0.6.1",
     "raddec-filter": ">=0.4.0"
   },
   "devDependencies": {},
