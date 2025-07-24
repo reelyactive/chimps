@@ -134,7 +134,24 @@ engine:
   }
 ```
 
-Be advised that RSSI-based positioning in real-world conditions, _especially with ambient devices and existing infrastructure,_ is inherently limited in accuracy.  The anchor-and-pull method is provided as a low-overhead means to output "good enough" positions for applications which must consume data in the form of coordinates.  If highly-accurate coordinate-based positioning is absolutely required, instead select the appropriate technologies and infrastructure that add a `position` property _before_ it is ingested by __chimps__. 
+Be advised that RSSI-based positioning in real-world conditions, _especially with ambient devices and existing infrastructure,_ is inherently limited in accuracy.  The anchor-and-pull method is provided as a low-overhead means to output "good enough" positions for applications which must consume data in the form of coordinates.  If highly-accurate coordinate-based positioning is absolutely required, instead select the appropriate technologies and infrastructure that add a `position` property _before_ it is ingested by __chimps__.
+
+
+How to distribute data?
+-----------------------
+
+__chimps__ is an EventEmitter which means that software can listen for _spatem_ events.  To facilitate distribution over a network, __chimps__ interfaces with a number of complementary software packages to keep the code as lightweight and modular as possible.  The following table lists all these interface packages which integrate seamlessly with __chimps__ in just two lines of code.
+
+| Interface package                                                | Provides |
+|:-----------------------------------------------------------------|:---------|
+| [barnacles-webhook](https://github.com/reelyactive/barnacles-webhook) | Webhook (event-driven HTTP POST) |
+| [barnacles-websocket](https://github.com/reelyactive/barnacles-websocket) | WebSocket server |
+| [barnacles-socketio](https://github.com/reelyactive/barnacles-socketio) | socket.io push API |
+| [barnacles-mqtt](https://github.com/reelyactive/barnacles-mqtt) | MQTT |
+| [barnacles-postgres](https://github.com/reelyactive/barnacles-postgres) | PostgreSQL database interface |
+| [barnacles-elasticsearch](https://github.com/reelyactive/barnacles-elasticsearch) | Elasticsearch database interface |
+
+See our [Create a Pareto Anywhere startup script](https://reelyactive.github.io/diy/pareto-anywhere-startup-script/) tutorial for detailed instructions on including any of the above interface packages with a [pareto-anywhere](https://github.com/reelyactive/pareto-anywhere) deployment.
 
 
 Options
